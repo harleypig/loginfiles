@@ -1,4 +1,4 @@
-## Login Files
+# Login Files
 
 Thanks to
 [flowbok](https://blog.flowblok.id.au/2013-02/shell-startup-scripts.html)'s
@@ -30,6 +30,28 @@ You will need access to a system to which you have root access.
   for each, as follows. Make sure `test.sh` is executable.
 
     echo "<filename> (-: $-) ($(shopt login_shell))"
+
+## Startup Methods
+
+There are many, many ... many login methods. I will list them here as
+I discover them and list the results as I discover the results.
+
+### Terminal
+
+* login (from terminal)
+
+### SSH
+
+* ssh user@host
+* ssh user@host command
+* ssh user@host -t command
+
+### su
+
+* su user
+* su -l user
+
+### sudo
 
 ## Bash
 
