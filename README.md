@@ -8,6 +8,8 @@ handled on the various systems I am on.
 But I need a bit more concrete example set. So, this is my attempt at those
 examples.
 
+repo: https://bitbucket.org/flowblok/shell-startup
+
 ## Setup
 
 You will need access to a system to which you have root access.
@@ -49,11 +51,67 @@ I discover them and list the results as I discover the results.
 ### su
 
 * su user
+  * interactive
+  * non-login
+
+This method (partially?) preserves the calling environment. The
+`harleypig` at the end means we're still in the calling users home directory.
+
+    $ su testloginfiles
+    Password:
+    /etc/bash.bashrc (-: himBH) (login_shell        off)
+    Can't locate strict.pm:   lib/strict.pm: Permission denied at /usr/bin/vendor_perl/bash-complete line 7.
+    BEGIN failed--compilation aborted at /usr/bin/vendor_perl/bash-complete line 7.
+    /home/testloginfiles/.bashrc (-: himBH) (login_shell            off)
+    [testloginfiles@sweetums harleypig]$
+
+* su -c test.sh user
+  * non-interactive
+  * non-login
+
+    su -c /home/testloginfiles/test.sh testloginfiles
+    Password:
+    /home/testloginfiles/test.sh (-: hB) (login_shell       off)
+
+This method (partially?) preserves the calling environment. The
+`harleypig` at the end means we're still in the calling users home directory.
+
+    $ su testloginfiles -c bash pwd
+    Password:
+    bash: cannot set terminal process group (-1): Inappropriate ioctl for device
+    bash: no job control in this shell
+    /etc/bash.bashrc (-: hiBH) (login_shell         off)
+    Can't locate strict.pm:   lib/strict.pm: Permission denied at /usr/bin/vendor_perl/bash-complete line 7.
+    BEGIN failed--compilation aborted at /usr/bin/vendor_perl/bash-complete line 7.
+    /home/testloginfiles/.bashrc (-: hiBH) (login_shell     off)
+    [testloginfiles@sweetums harleypig]$
+
+* su - user
 * su -l user
+* su --login user
+
+* su user
+* su -c user command
+
+#### Notes
+
+There is not supposed to be a difference between `-`, `-l` and `--login` but
+the man page for `su` warns against using the shortcuts, so we should probably
+test all three options.
+
+If the need for the remaining options appears I'll add them. Pull requests
+will be considered as well.
+
+test options --pty, --preserve-environment, --shell, --session-command?
 
 ### sudo
 
 ## Bash
+
+https://unix.stackexchange.com/questions/382984/the-zeroth-argument-to-a-command-executed-by-exec
+https://unix.stackexchange.com/questions/435625/does-a-noninteractive-login-shell-execute-profile-or-a-file-whose-name-is/435626
+https://unix.stackexchange.com/questions/tagged/bash+configuration
+https://unix.stackexchange.com/questions/435744/how-can-we-start-bash-with-the-first-character-of-argument-zero-being
 
 ## Sh
 
