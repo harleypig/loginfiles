@@ -58,7 +58,7 @@ Logging in from the terminal produces:
     /home/testloginfiles/.bash_profile (-: himBH) (login_shell      on)
     [testloginfiles@sweetums ~]$
 
-### SSH
+### ssh
 
 #### ssh user@host
 
@@ -121,26 +121,17 @@ not being executed and I don't have a `.profile`.
 
 #### su -c test.sh user
 
+This method does not have the same problem as above.
+
     su -c /home/testloginfiles/test.sh testloginfiles
     Password:
     /home/testloginfiles/test.sh (-: hB) (login_shell       off)
 
-This method (partially?) preserves the calling environment. The `harleypig` at
-the end means we're still in the calling users home directory.
-
-    $ su testloginfiles -c bash pwd
-    Password:
-    bash: cannot set terminal process group (-1): Inappropriate ioctl for device
-    bash: no job control in this shell
-    /etc/bash.bashrc (-: hiBH) (login_shell         off)
-    Can't locate strict.pm:   lib/strict.pm: Permission denied at /usr/bin/vendor_perl/bash-complete line 7.
-    BEGIN failed--compilation aborted at /usr/bin/vendor_perl/bash-complete line 7.
-    /home/testloginfiles/.bashrc (-: hiBH) (login_shell     off)
-    [testloginfiles@sweetums harleypig]$
-
 #### su - user
+#### su -l user
+#### su --login user
 
-This method gives us the same result as a terminal login.
+These methods gives us the same result as a terminal login.
 
     $ su - testloginfiles
     Password:
@@ -149,11 +140,17 @@ This method gives us the same result as a terminal login.
     /home/testloginfiles/.bash_profile (-: himBH) (login_shell      on)
     [testloginfiles@sweetums ~]$
 
-#### su -l user
-#### su --login user
+#### su - user -c command
+#### su -l user -c command
+#### su --login user -c command
 
-#### su user
-#### su -c user command
+These methods gives us these results.
+
+    $ su - testloginfiles -c /home/testloginfiles/test.sh
+    Password:
+    /etc/profile (-: hBc) (login_shell      on)
+    /home/testloginfiles/.bash_profile (-: hBc) (login_shell        on)
+    /home/testloginfiles/test.sh (-: hB) (login_shell       off)
 
 #### Notes
 
