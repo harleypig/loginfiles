@@ -41,25 +41,33 @@ These tests were run in an Arch Linux environment.
 
 ## Summary
 
-### Terminal
-#### login (from terminal)
+### login (from terminal)
+### ssh user@host
+### su - user
+### su -l user
+### su --login user
 
 * interactive
 * login shell
-* /etc/profile
-* /etc/bash.bashrc
-* user's .bash_profile
+* `/etc/profile`
+* `/etc/bash.bashrc`
+* user's `.bash_profile`
 
-### ssh
-#### ssh user@host
-#### ssh user@host command
-#### ssh user@host -t command
-### su
+### ssh user@host command
+### ssh user@host -t command
+### su -c test.sh user
+
+* non-interactive
+* no login shell
+* no startup files executed
+
 #### su user
-#### su -c test.sh user
-#### su - user
-#### su -l user
-#### su --login user
+
+* interactive
+* no login shell
+* `/etc/bash.bashrc`
+* user's `.bash_profile`
+
 #### su - user -c command
 #### su -l user -c command
 #### su --login user -c command
@@ -144,7 +152,7 @@ But if I run this from another directory I get the following:
 I do not understand why this is happening. My `.bash_profile` and `.bashrc` are
 not being executed and I don't have a `.profile`.
 
-#### su -c test.sh user
+#### su -c command user
 
 This method does not have the same problem as above.
 
