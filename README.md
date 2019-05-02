@@ -43,7 +43,7 @@ I discover them and list the results as I discover the results.
 
 * login (from terminal)
 
-Does there have to be text here?
+Logging in from the terminal produces:
 
     sweetums login: testloginfiles
     Password:
@@ -55,6 +55,8 @@ Does there have to be text here?
 ### SSH
 
 * ssh user@host
+
+Running ssh to the localhost produces:
 
     $ ssh testloginfiles@localhost
     testloginfiles@localhost's password:
