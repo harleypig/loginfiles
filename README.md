@@ -55,22 +55,27 @@ These tests were run in an Arch Linux environment.
 
 ##### ssh user@host command
 ##### ssh user@host -t command
-##### su -c test.sh user
+##### su -c command user
 
 * non-interactive
 * no login shell
 * no startup files executed
 
-###### su user
+##### su user
 
 * interactive
 * no login shell
 * `/etc/bash.bashrc`
-* user's `.bash_profile`
+* user's `.bashrc`
 
-#### su - user -c command
-#### su -l user -c command
-#### su --login user -c command
+##### su - user -c command
+##### su -l user -c command
+##### su --login user -c command
+
+* non-interactive
+* login shell
+* `/etc/profile`
+* user's `.bash_profile`
 
 ## Startup Methods
 
