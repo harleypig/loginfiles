@@ -41,11 +41,11 @@ These tests were run in an Arch Linux environment.
 
 ## Summary
 
-### login (from terminal)
-### ssh user@host
-### su - user
-### su -l user
-### su --login user
+##### login (from terminal)
+##### ssh user@host
+##### su - user
+##### su -l user
+##### su --login user
 
 * interactive
 * login shell
@@ -53,15 +53,15 @@ These tests were run in an Arch Linux environment.
 * `/etc/bash.bashrc`
 * user's `.bash_profile`
 
-### ssh user@host command
-### ssh user@host -t command
-### su -c test.sh user
+##### ssh user@host command
+##### ssh user@host -t command
+##### su -c test.sh user
 
 * non-interactive
 * no login shell
 * no startup files executed
 
-#### su user
+###### su user
 
 * interactive
 * no login shell
