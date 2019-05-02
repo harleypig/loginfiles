@@ -96,13 +96,28 @@ command) and returns to the caller.
 This method (partially?) preserves the calling environment. The `harleypig` at
 the end means we're still in the calling users home directory.
 
-    $ su testloginfiles
+If I run this from my home directory I get the following:
+
+    $ pwd ; su testloginfiles
+    /home/harleypig
     Password:
     /etc/bash.bashrc (-: himBH) (login_shell        off)
     Can't locate strict.pm:   lib/strict.pm: Permission denied at /usr/bin/vendor_perl/bash-complete line 7.
     BEGIN failed--compilation aborted at /usr/bin/vendor_perl/bash-complete line 7.
     /home/testloginfiles/.bashrc (-: himBH) (login_shell            off)
     [testloginfiles@sweetums harleypig]$
+
+But if I run this from another directory I get the following:
+
+    $ cd /tmp ; pwd ; su testloginfiles
+    /tmp
+    Password:
+    /etc/bash.bashrc (-: himBH) (login_shell        off)
+    /home/testloginfiles/.bashrc (-: himBH) (login_shell            off)
+    [testloginfiles@sweetums tmp]$
+
+I do not understand why this is happening. My `.bash_profile` and `.bashrc` are
+not being executed and I don't have a `.profile`.
 
 * su -c test.sh user
 
