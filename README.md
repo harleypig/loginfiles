@@ -53,6 +53,15 @@ I discover them and list the results as I discover the results.
 ### SSH
 
 * ssh user@host
+
+    $ ssh testloginfiles@localhost
+    testloginfiles@localhost's password:
+    Last login: Thu May  2 09:46:24 2019
+    /etc/profile (-: himBH) (login_shell            on)
+    /etc/bash.bashrc (-: himBH) (login_shell        on)
+    /home/testloginfiles/.bash_profile (-: himBH) (login_shell      on)
+    [testloginfiles@sweetums ~]$
+
 * ssh user@host command
 * ssh user@host -t command
 
