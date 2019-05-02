@@ -46,7 +46,7 @@ I discover them and list the results as I discover the results.
 
 ### Terminal
 
-* login (from terminal)
+#### login (from terminal)
 
 Logging in from the terminal produces:
 
@@ -149,11 +149,11 @@ This method gives us the same result as a terminal login.
     /home/testloginfiles/.bash_profile (-: himBH) (login_shell      on)
     [testloginfiles@sweetums ~]$
 
-* su -l user
-* su --login user
+#### su -l user
+#### su --login user
 
-* su user
-* su -c user command
+#### su user
+#### su -c user command
 
 #### Notes
 
