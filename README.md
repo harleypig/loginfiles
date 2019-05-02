@@ -46,6 +46,7 @@ These tests were run in an Arch Linux environment.
 ##### su - user
 ##### su -l user
 ##### su --login user
+##### sudo -i -u user
 
 * interactive
 * login shell
@@ -202,6 +203,32 @@ will be considered as well.
 test options --pty, --preserve-environment, --shell, --session-command?
 
 ### sudo
+
+#### sudo -i -u user
+
+Same as a terminal login.
+
+   $ sudo -i -u testloginfiles
+   /etc/profile (-: himBH) (login_shell            on)
+   /etc/bash.bashrc (-: himBH) (login_shell        on)
+   /home/testloginfiles/.bash_profile (-: himBH) (login_shell      on)
+   [testloginfiles@sweetums ~]$
+
+#### sudo -u user command
+
+   $ sudo -u testloginfiles /home/testloginfiles/test.sh
+   /home/testloginfiles/test.sh (-: hB) (login_shell       off)
+
+#### sudo -i -u user command
+
+Not sure why this is, but login_shell is turned off after `.bash_profile` is
+executed.
+
+   $ sudo -i -u testloginfiles /home/testloginfiles/test.sh
+   /etc/profile (-: hBc) (login_shell      on)
+   /home/testloginfiles/.bash_profile (-: hBc) (login_shell        on)
+   /home/testloginfiles/test.sh (-: hB) (login_shell       off)
+
 
 ## Bash
 
