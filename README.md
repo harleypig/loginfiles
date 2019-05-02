@@ -35,6 +35,10 @@ fully test these logins.
 
     echo "<filename> (-: $-) ($(shopt login_shell))"
 
+### System Information
+
+These tests were run in an Arch Linux environment.
+
 ## Startup Methods
 
 There are many, many ... many login methods. I will list them here as
@@ -58,7 +62,7 @@ Logging in from the terminal produces:
 
 * ssh user@host
 
-Running this command gives us the same results as a terminal login:
+This command gives us the same results as a terminal login:
 
     $ ssh testloginfiles@localhost
     testloginfiles@localhost's password:
@@ -70,13 +74,20 @@ Running this command gives us the same results as a terminal login:
 
 * ssh user@host command
 
-Running this runs the command (which must be a fully qualified path to the
+This runs the command (which must be a fully qualified path to the
 command) and returns to the caller.
 
     $ ssh testloginfiles@localhost /home/testloginfiles/test.sh
     /home/testloginfiles/test.sh (-: hB) (login_shell       off)
 
 * ssh user@host -t command
+
+This runs the command (which must be a fully qualified path to the
+command) and returns to the caller.
+
+    ssh -t testloginfiles@localhost /home/testloginfiles/test.sh
+    /home/testloginfiles/test.sh (-: hB) (login_shell       off)
+    Shared connection to localhost closed.
 
 ### su
 
