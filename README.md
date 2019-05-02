@@ -39,6 +39,31 @@ fully test these logins.
 
 These tests were run in an Arch Linux environment.
 
+## Summary
+
+### Terminal
+#### login (from terminal)
+
+* interactive
+* login shell
+* /etc/profile
+* /etc/bash.bashrc
+* user's .bash_profile
+
+### ssh
+#### ssh user@host
+#### ssh user@host command
+#### ssh user@host -t command
+### su
+#### su user
+#### su -c test.sh user
+#### su - user
+#### su -l user
+#### su --login user
+#### su - user -c command
+#### su -l user -c command
+#### su --login user -c command
+
 ## Startup Methods
 
 There are many, many ... many login methods. I will list them here as
