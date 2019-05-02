@@ -60,7 +60,7 @@ Logging in from the terminal produces:
 
 ### SSH
 
-* ssh user@host
+#### ssh user@host
 
 This command gives us the same results as a terminal login:
 
@@ -72,7 +72,7 @@ This command gives us the same results as a terminal login:
     /home/testloginfiles/.bash_profile (-: himBH) (login_shell      on)
     [testloginfiles@sweetums ~]$
 
-* ssh user@host command
+#### ssh user@host command
 
 This runs the command (which must be a fully qualified path to the
 command) and returns to the caller.
@@ -80,7 +80,7 @@ command) and returns to the caller.
     $ ssh testloginfiles@localhost /home/testloginfiles/test.sh
     /home/testloginfiles/test.sh (-: hB) (login_shell       off)
 
-* ssh user@host -t command
+#### ssh user@host -t command
 
 This runs the command (which must be a fully qualified path to the
 command) and returns to the caller.
@@ -91,7 +91,7 @@ command) and returns to the caller.
 
 ### su
 
-* su user
+#### su user
 
 This method (partially?) preserves the calling environment. The `harleypig` at
 the end means we're still in the calling users home directory.
@@ -119,7 +119,7 @@ But if I run this from another directory I get the following:
 I do not understand why this is happening. My `.bash_profile` and `.bashrc` are
 not being executed and I don't have a `.profile`.
 
-* su -c test.sh user
+#### su -c test.sh user
 
     su -c /home/testloginfiles/test.sh testloginfiles
     Password:
@@ -138,7 +138,7 @@ the end means we're still in the calling users home directory.
     /home/testloginfiles/.bashrc (-: hiBH) (login_shell     off)
     [testloginfiles@sweetums harleypig]$
 
-* su - user
+#### su - user
 
 This method gives us the same result as a terminal login.
 
