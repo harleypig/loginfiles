@@ -12,10 +12,11 @@ repo: https://bitbucket.org/flowblok/shell-startup
 
 ## Setup
 
-You will need access to a system to which you have root access.
+You will need access to a system to which you have root access in order to
+fully test these logins.
 
 * Create a test user (I used 'testloginfiles'). How to do that on your system
-   is beyond the scope of this project.
+  is beyond the scope of this project.
 
 * Modify `/etc/profile` and add the following as the first executable line
   (replacing 'testloginfiles' with the username you created).
@@ -27,9 +28,9 @@ You will need access to a system to which you have root access.
 
     [[ $USER == 'testloginfiles' ]] && echo "/etc/bash.bashrc (-: $-) ($(shopt login_shell))"
 
-* Create `.bash_profile`, `.bashrc`, `.profile` and `test.sh` in your users home
-  directory. They should each contain only one line, replacing the filename
-  for each, as follows. Make sure `test.sh` is executable.
+* Create `.bash_profile`, `.bashrc`, `.profile` and `test.sh` in your users
+  home directory. They should each contain only one line, replacing the
+  filename for each, as follows. Make sure `test.sh` is executable.
 
     echo "<filename> (-: $-) ($(shopt login_shell))"
 
@@ -41,6 +42,13 @@ I discover them and list the results as I discover the results.
 ### Terminal
 
 * login (from terminal)
+
+    sweetums login: testloginfiles
+    Password:
+    Last login: Thu May  2 09:45:06 on tty2
+    /etc/profile (-: himBH) (login_shell        on)
+    /etc/bash.bashrc (-: himBH) (login_shell    on)
+    /home/testloginfiles/.bash_profile (-: himBH) (login_shell      on)
 
 ### SSH
 
