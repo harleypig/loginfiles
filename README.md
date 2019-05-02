@@ -92,11 +92,9 @@ command) and returns to the caller.
 ### su
 
 * su user
-  * interactive
-  * non-login
 
-This method (partially?) preserves the calling environment. The
-`harleypig` at the end means we're still in the calling users home directory.
+This method (partially?) preserves the calling environment. The `harleypig` at
+the end means we're still in the calling users home directory.
 
     $ su testloginfiles
     Password:
@@ -107,15 +105,13 @@ This method (partially?) preserves the calling environment. The
     [testloginfiles@sweetums harleypig]$
 
 * su -c test.sh user
-  * non-interactive
-  * non-login
 
     su -c /home/testloginfiles/test.sh testloginfiles
     Password:
     /home/testloginfiles/test.sh (-: hB) (login_shell       off)
 
-This method (partially?) preserves the calling environment. The
-`harleypig` at the end means we're still in the calling users home directory.
+This method (partially?) preserves the calling environment. The `harleypig` at
+the end means we're still in the calling users home directory.
 
     $ su testloginfiles -c bash pwd
     Password:
@@ -128,6 +124,16 @@ This method (partially?) preserves the calling environment. The
     [testloginfiles@sweetums harleypig]$
 
 * su - user
+
+This method gives us the same result as a terminal login.
+
+    $ su - testloginfiles
+    Password:
+    /etc/profile (-: himBH) (login_shell            on)
+    /etc/bash.bashrc (-: himBH) (login_shell        on)
+    /home/testloginfiles/.bash_profile (-: himBH) (login_shell      on)
+    [testloginfiles@sweetums ~]$
+
 * su -l user
 * su --login user
 
