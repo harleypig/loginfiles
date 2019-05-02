@@ -8,7 +8,8 @@ handled on the various systems I am on.
 But I need a bit more concrete example set. So, this is my attempt at those
 examples.
 
-repo: https://bitbucket.org/flowblok/shell-startup
+[flowbok's repo](https://bitbucket.org/flowblok/shell-startup) which contains
+his basic startup files.
 
 ## Setup
 
@@ -51,12 +52,13 @@ Logging in from the terminal produces:
     /etc/profile (-: himBH) (login_shell        on)
     /etc/bash.bashrc (-: himBH) (login_shell    on)
     /home/testloginfiles/.bash_profile (-: himBH) (login_shell      on)
+    [testloginfiles@sweetums ~]$
 
 ### SSH
 
 * ssh user@host
 
-Running ssh to the localhost produces:
+Running this command gives us the same results as a terminal login:
 
     $ ssh testloginfiles@localhost
     testloginfiles@localhost's password:
@@ -67,6 +69,13 @@ Running ssh to the localhost produces:
     [testloginfiles@sweetums ~]$
 
 * ssh user@host command
+
+Running this runs the command (which must be a fully qualified path to the
+command) and returns to the caller.
+
+    $ ssh testloginfiles@localhost /home/testloginfiles/test.sh
+    /home/testloginfiles/test.sh (-: hB) (login_shell       off)
+
 * ssh user@host -t command
 
 ### su
