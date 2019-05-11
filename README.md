@@ -54,6 +54,8 @@ sudo -i -u user
 * `/etc/bash.bashrc`
 * user's `.bash_profile`
 
+##
+
 ssh user@host command  
 ssh user@host -t command  
 su -c command user  
