@@ -33,7 +33,7 @@ fully test these logins.
   home directory. They should each contain only one line, replacing the
   filename for each, as follows. Make sure `test.sh` is executable.
 
-    echo "<filename> (-: $-) ($(shopt login_shell))"
+    echo "\<filename\> (-: $-) ($(shopt login_shell))"
 
 ### System Information
 
@@ -57,6 +57,7 @@ These tests were run in an Arch Linux environment.
 ##### ssh user@host command
 ##### ssh user@host -t command
 ##### su -c command user
+##### sudo -u user command
 
 * non-interactive
 * no login shell
@@ -72,11 +73,15 @@ These tests were run in an Arch Linux environment.
 ##### su - user -c command
 ##### su -l user -c command
 ##### su --login user -c command
+##### sudo -i -u user command
 
 * non-interactive
 * login shell
 * `/etc/profile`
 * user's `.bash_profile`
+
+Note: After user's `.bash_profile` is executed it appears that `login_shell`
+is turned off for the sudo command.
 
 ## Startup Methods
 
@@ -86,6 +91,18 @@ I discover them and list the results as I discover the results.
 ### Terminal
 
 #### login (from terminal)
+
+##### Shell set to /bin/bash
+
+    sweetums login: testloginfiles
+    Password:
+    Last login: Thu May  2 09:45:06 on tty2
+    /etc/profile (-: himBH) (login_shell        on)
+    /etc/bash.bashrc (-: himBH) (login_shell    on)
+    /home/testloginfiles/.bash_profile (-: himBH) (login_shell      on)
+    [testloginfiles@sweetums ~]$
+
+##### Shell set to /bin/sh
 
 Logging in from the terminal produces:
 
@@ -135,28 +152,21 @@ command) and returns to the caller.
 This method (partially?) preserves the calling environment. The `harleypig` at
 the end means we're still in the calling users home directory.
 
-If I run this from my home directory I get the following:
+From the `su` man page:
 
-    $ pwd ; su testloginfiles
-    /home/harleypig
+> For backward compatibility, su defaults to not change the current directory
+> and to only set the environment variables HOME and SHELL (plus USER and
+> LOGNAME if the target user is not root).
+
+This means that your existing environment will be accessible from `user`'s
+environment. This is a possible security risk, so you might want to keep it in
+mind when using this method.
+
+    $ su testloginfiles
     Password:
     /etc/bash.bashrc (-: himBH) (login_shell        off)
-    Can't locate strict.pm:   lib/strict.pm: Permission denied at /usr/bin/vendor_perl/bash-complete line 7.
-    BEGIN failed--compilation aborted at /usr/bin/vendor_perl/bash-complete line 7.
     /home/testloginfiles/.bashrc (-: himBH) (login_shell            off)
     [testloginfiles@sweetums harleypig]$
-
-But if I run this from another directory I get the following:
-
-    $ cd /tmp ; pwd ; su testloginfiles
-    /tmp
-    Password:
-    /etc/bash.bashrc (-: himBH) (login_shell        off)
-    /home/testloginfiles/.bashrc (-: himBH) (login_shell            off)
-    [testloginfiles@sweetums tmp]$
-
-I do not understand why this is happening. My `.bash_profile` and `.bashrc` are
-not being executed and I don't have a `.profile`.
 
 #### su -c command user
 
