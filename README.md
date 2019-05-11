@@ -54,26 +54,26 @@ sudo -i -u user
 * `/etc/bash.bashrc`
 * user's `.bash_profile`
 
-##### ssh user@host command
-##### ssh user@host -t command
-##### su -c command user
-##### sudo -u user command
+ssh user@host command  
+ssh user@host -t command  
+su -c command user  
+sudo -u user command  
 
 * non-interactive
 * no login shell
 * no startup files executed
 
-##### su user
+su user  
 
 * interactive
 * no login shell
 * `/etc/bash.bashrc`
 * user's `.bashrc`
 
-##### su - user -c command
-##### su -l user -c command
-##### su --login user -c command
-##### sudo -i -u user command
+su - user -c command  
+su -l user -c command  
+su --login user -c command  
+sudo -i -u user command  
 
 * non-interactive
 * login shell
@@ -92,7 +92,7 @@ I discover them and list the results as I discover the results.
 
 #### login (from terminal)
 
-##### Shell set to /bin/bash
+Shell set to /bin/bash  
 
     sweetums login: testloginfiles
     Password:
@@ -102,7 +102,7 @@ I discover them and list the results as I discover the results.
     /home/testloginfiles/.bash_profile (-: himBH) (login_shell      on)
     [testloginfiles@sweetums ~]$
 
-##### Shell set to /bin/sh
+Shell set to /bin/sh  
 
 Logging in from the terminal produces:
 
