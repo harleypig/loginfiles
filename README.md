@@ -43,10 +43,10 @@ These tests were run in an Arch Linux environment.
 
 login (from terminal)  
 ssh user@host  
-su - user  
-su -l user  
-su --login user  
 sudo -i -u user  
+su --login user  
+su -l user  
+su - user  
 
 * interactive
 * login shell
@@ -76,10 +76,10 @@ su user
 
 ##
 
-su - user -c command  
-su -l user -c command  
-su --login user -c command  
 sudo -i -u user command  
+su --login user -c command  
+su -l user -c command  
+su - user -c command  
 
 * non-interactive
 * login shell
