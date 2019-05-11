@@ -65,12 +65,16 @@ sudo -u user command
 * no login shell
 * no startup files executed
 
+##
+
 su user  
 
 * interactive
 * no login shell
 * `/etc/bash.bashrc`
 * user's `.bashrc`
+
+##
 
 su - user -c command  
 su -l user -c command  
