@@ -41,12 +41,12 @@ These tests were run in an Arch Linux environment.
 
 ## Summary
 
-##### login (from terminal)
-##### ssh user@host
-##### su - user
-##### su -l user
-##### su --login user
-##### sudo -i -u user
+login (from terminal)
+ssh user@host
+su - user
+su -l user
+su --login user
+sudo -i -u user
 
 * interactive
 * login shell
