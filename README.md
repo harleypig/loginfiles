@@ -245,15 +245,15 @@ executed.
     /home/testloginfiles/.bash_profile (-: hBc) (login_shell        on)
     /home/testloginfiles/test.sh (-: hB) (login_shell       off)
 
+## TBD
 
-## Bash
+cron, csh, ksh, tcsh, zsh, sh
+
+Start bash with $BASH\_ENV set
+
+## Resources
 
 https://unix.stackexchange.com/questions/382984/the-zeroth-argument-to-a-command-executed-by-exec
 https://unix.stackexchange.com/questions/435625/does-a-noninteractive-login-shell-execute-profile-or-a-file-whose-name-is/435626
 https://unix.stackexchange.com/questions/tagged/bash+configuration
 https://unix.stackexchange.com/questions/435744/how-can-we-start-bash-with-the-first-character-of-argument-zero-being
-
-## Sh
-
-On modern systems, `sh` is a link to `bash` which tries to emulate the
-original `sh` execution.
