@@ -1,0 +1,20 @@
+digraph {
+  node [
+    shape=box,
+    fontname=mono,
+  ];
+
+  edge [
+    arrowhead=empty
+  ];
+
+  il_etc_bashrc   [ label="/etc/bash.bashrc"    ];
+  il_etc_profile  [ label="/etc/profile"        ];
+  il_user_profile [ label="$HOME/.bash_profile" ];
+
+  subgraph cluster_il {
+    label="Interactive Login";
+    il_etc_profile -> il_etc_bashrc;
+    il_etc_bashrc -> il_user_profile;
+  }
+}

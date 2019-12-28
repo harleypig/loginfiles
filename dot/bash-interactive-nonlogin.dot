@@ -1,0 +1,18 @@
+digraph {
+  node [
+    shape=box,
+    fontname=mono,
+  ];
+
+  edge [
+    arrowhead=empty
+  ];
+
+  in_etc_bashrc   [ label="/etc/bash.bashrc"    ];
+  in_user_bashrc  [ label="$HOME/.bashrc"       ];
+
+  subgraph cluster_in {
+    label="Interactive Non-Login";
+    in_etc_bashrc -> in_user_bashrc;
+  }
+}

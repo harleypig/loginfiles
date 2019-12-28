@@ -1,0 +1,18 @@
+digraph {
+  node [
+    shape=box,
+    fontname=mono,
+  ];
+
+  edge [
+    arrowhead=empty
+  ];
+
+  nl_etc_profile  [ label="/etc/profile"        ];
+  nl_user_profile [ label="$HOME/.bash_profile" ];
+
+  subgraph cluster_nl {
+    label="Non-Interactive Login";
+    nl_etc_profile -> nl_user_profile;
+  }
+}
