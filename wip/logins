@@ -1,0 +1,146 @@
+#!/usr/bin/env perl
+
+## no critic
+
+use strict;
+use warnings;
+
+use Expect;
+use Net::Telnet;
+
+# Possible ways to login:
+
+# XXX: Should I test 'bash command'?
+
+# console (can't test this here, must be done manually)
+#   or maybe use telnet ... is this valid? I don't see any differences ...
+
+# su
+#   su user
+#   su -c command user
+#   su - user
+#   su -l user
+#   su --login user
+#   su - -c command user
+#   su -l -c command user
+#   su --login -c command user
+
+#   --pty, --preserve-environment, --shell, --session-command?
+
+# sudo
+#   sudo -i -u user
+#   sudo -u user command
+#   sudo -i -u user command
+
+# ssh
+#   ssh user@host
+#   ssh user@host command
+#   ssh user@host -t command
+
+# rsh (do I really want to test this?)
+
+my $user = 'testloginfiles';
+my $pass = $user;
+
+my $spawn_ok;
+
+my @patterns = (
+  [ qr'login: $',
+
+    sub {
+      $spawn_ok = 1;
+      my $fh = shift;
+      $fh->send( "$user\n" );
+      exp_continue;
+    }
+  ],
+
+  [ 'Password: $',
+
+    sub {
+      my $fh = shift;
+      print $fh "$pass\n";
+      exp_continue;
+    }
+  ],
+
+  [
+    eof => sub {
+      if ( $spawn_ok ) {
+        die "ERROR: premature EOF in login.\n";
+      } else {
+        die "ERROR: could not spawn telnet.\n";
+      }
+    }
+  ],
+
+  [
+    timeout => sub {
+      die "No login.\n";
+    }
+  ],
+
+  '-re',
+  qr'[#>:] $',
+);
+
+my $cmd   = 'telnet';
+my @parms = ( 'localhost' );
+my $logfile = 'telnet.localhost.log';
+
+my $e = Expect->new;
+
+$e->raw_pty( 1 );
+$e->log_file($logfile);
+$e->debug(1);
+
+$e->spawn( $cmd, @parms )
+  or die "Cannot spawn $cmd: $!\n";
+
+#my $t = Net::Telnet->new( 'localhost' )
+#  or die "Cannot telnet to localhost: $!\n";
+#
+#my $e = Expect->exp_init( $t );
+#
+#my $spawn_ok;
+#
+#$e->expect(
+#  1,
+#
+#  [ qr'login: $',
+#
+#    sub {
+#      $spawn_ok = 1;
+#      my $fh = shift;
+#      $fh->send( "$user\n" );
+#      exp_continue;
+#    }
+#  ],
+#
+#  [ 'Password: $',
+#
+#    sub {
+#      my $fh = shift;
+#      print $fh "$pass\n";
+#      exp_continue;
+#    }
+#  ],
+#
+#  [
+#    eof => sub {
+#      if ( $spawn_ok ) {
+#        die "ERROR: premature EOF in login.\n";
+#      } else {
+#        die "ERROR: could not spawn telnet.\n";
+#      }
+#    }
+#  ],
+#
+#  [
+#    timeout => sub {
+#      die "No login.\n";
+#    }
+#  ],
+#
+#  '-re', qr'[#>:] $', #' wait for shell prompt, then exit expect
+#);

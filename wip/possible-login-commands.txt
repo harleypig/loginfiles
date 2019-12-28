@@ -1,0 +1,14 @@
+ssh <user>@<host>
+ssh <user>@<host> <command>
+ssh <user>@<host> -t <command>
+su -c <command> <user>
+sudo -i -u <user>
+sudo -i -u <user> <command>
+sudo -u <user> <command>
+su --login <user>
+su --login <user> -c <command>
+su -l <user>
+su -l <user> -c <command>
+su - <user>
+su <user>
+su - <user> -c <command>
