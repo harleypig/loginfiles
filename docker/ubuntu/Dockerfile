@@ -10,7 +10,11 @@ ARG TESTUSER
 RUN : "${TESTUSER:?TESTUSER not set}"
 
 #-----------------------------------------------------------------------------
-RUN apt-get install ssh
+RUN apt-get update
+
+#-----------------------------------------------------------------------------
+RUN apt-get install -y openssh-server
+
 RUN systemctl ssh start
 RUN systemctl ssh enable
 RUN systemctl ssh status
